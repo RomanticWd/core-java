@@ -59,6 +59,21 @@ public class IntegerTest {
         System.out.println(in4 == in3);
         // false
 
+        // java的方法总是按值传递，不可能编写一个能够增加整形参数值的java方法
+        int x1 = 3;
+        triple(x1);
+        System.out.println(x1);
+
+        Integer x2 = 3;
+        triple(x2);
+        System.out.println(x2);
     }
 
+    public static void triple(int x) {
+        x = x * 3;
+    }
+
+    public static void triple(Integer x) {
+        x = x * 3;
+    }
 }

@@ -59,3 +59,51 @@ T extends Comparable & Serializable
 * 所有的类型参数都会替换为他们的限定类型。
 * 会合成桥方法来保持多态。
 * 为保持类型安全性，必要时会插入强制类型转换。
+
+### 20201203 泛型的局限性 （P338）
+#### 1. 不能用基本类型实例化类型参数
+没有Pair<double>，只有Pair<Double>。
+原因在于类型擦除，擦除之后，Pair类中含有object类型的字段，而Object不能存储double值。
+
+#### 2. 运行时类型查询只适用于原始类型
+```
+if (a instanceof Pair<String>)   //ERROR
+```
+#### 3. 不能创建参数化类型的数组
+```
+var table = new Pair<String>[10]; //ERROR
+```
+table的类型是Pair[],类型擦除后变为Object[]。
+
+#### 4. Varargs警告
+
+#### 5. 不能实例化类型变量
+不能在类似new T(...)的表达式中使用类型变量。
+```
+// ERROR
+public Pair() {
+    first = new T();
+    second = new T();
+}
+```
+
+#### 6. 不能构造泛型数组
+
+#### 7. 泛型类的静态上下文中类型变量无效
+不能在静态字段或方法中引用类型变量。
+```java
+public class Singleton<T> {
+    private static T singleInstance; //ERROR
+    private static T getSingleInstance() {
+        if (singleInstance == null) 
+        return singleInstance;
+    }
+}
+```
+如果这样可行，可以声明一个Singleton<Random>共享一个随机数生成器，另外声明一个Singleton<JFileChoose>共享一个文件选择器对话框。
+类型擦除过后，只剩下Singleton，只包含一个singleInstance字段。不能区分具体他是谁的。
+
+#### 8. 不能抛出或捕获泛型类的实例
+既不能抛出也不能捕获泛型类的对象。Throwable甚至都是不合法的。
+
+#### 9. 可以取消对检查型异常的检查

@@ -18,10 +18,11 @@ public class ProxyClient {
      * 优点
      * 1. 代理类在程序运行时由反射自动生成，无需我们手动编写代理类代码，简化编程工作
      * 2. 一个动态代理类InvocationHandler就能代理多个被代理类，较为灵活
-     * <p>
+     *
      * 缺点
      * 1、动态代理只能代理实现了接口的类，而不能代理实现抽象类的类
      * 2、通过反射调用被代理类的方法，效率低
+     *
      **/
 
     public static void main(String[] args) {

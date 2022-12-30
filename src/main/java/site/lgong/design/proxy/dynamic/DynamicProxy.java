@@ -19,8 +19,12 @@ public class DynamicProxy implements InvocationHandler {
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        //调用方法之前，我们可以添加自己的操作
+        System.out.println("before method " + method.getName());
         // 注意 这里传入的对象是mObject，而不是入参proxy
         Object result = method.invoke(mObject, args);
+        //调用方法之后，我们同样可以添加自己的操作
+        System.out.println("after method " + method.getName());
         return result;
     }
 }

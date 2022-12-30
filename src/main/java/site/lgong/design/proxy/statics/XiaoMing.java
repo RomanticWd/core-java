@@ -11,4 +11,8 @@ public class XiaoMing implements IRoom {
     public void seekRoom() {
         System.out.println("小明在找房子");
     }
+
+    public final void seekGirlFriend() {
+        System.out.println("小明在找女朋友");
+    }
 }

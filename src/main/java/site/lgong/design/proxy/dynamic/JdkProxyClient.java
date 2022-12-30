@@ -12,7 +12,7 @@ import java.lang.reflect.Proxy;
  * @author yue.liu
  * @since [2021/8/13 9:56]
  */
-public class ProxyClient {
+public class JdkProxyClient {
 
     /**
      * 优点
